@@ -6,7 +6,7 @@
 (3) Efficiently calculate function values ​​and partial differential values  
 
 ```
-public  void Sample1(){ test
+public  void Sample1(){
     AD_Man ADM = new AD_Man();          // AutoDiff manager. Defined before starting AD
 
     AD x1=new AD( );
