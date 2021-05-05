@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoDiff_sample", "AutoDiff_sample\AutoDiff_sample.csproj", "{F8FC9B82-7AEB-4429-9716-97AFF282F5C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2D003E69-CC5E-4FFC-9271-673ED4824908} = {2D003E69-CC5E-4FFC-9271-673ED4824908}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoDiff", "AutoDiff\AutoDiff.csproj", "{2D003E69-CC5E-4FFC-9271-673ED4824908}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8FC9B82-7AEB-4429-9716-97AFF282F5C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8FC9B82-7AEB-4429-9716-97AFF282F5C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8FC9B82-7AEB-4429-9716-97AFF282F5C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8FC9B82-7AEB-4429-9716-97AFF282F5C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D003E69-CC5E-4FFC-9271-673ED4824908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D003E69-CC5E-4FFC-9271-673ED4824908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D003E69-CC5E-4FFC-9271-673ED4824908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D003E69-CC5E-4FFC-9271-673ED4824908}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {263A3B5D-F205-4922-9A9F-EA604E2FF827}
+	EndGlobalSection
+EndGlobal
