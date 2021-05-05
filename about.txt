@@ -1,0 +1,2 @@
+Reverse mode automatic differentiation library. Compile the function,
+ and efficiently calculate function values ​​and partial differential values.
