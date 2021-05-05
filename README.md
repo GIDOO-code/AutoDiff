@@ -4,7 +4,7 @@
     The calculation order of the function is determined from the input/output of the function.  
 (3) Efficiently calculate function values ​​and partial differential values  
 
-# Usage
+## Usage
 ```
 public  void Sample1(){
     AD_Man ADM = new AD_Man();          // AutoDiff manager. Defined before starting AD
