@@ -35,13 +35,15 @@ namespace AutoDiff{
             NodeLst.ForEach(N=> {if(N.ADF!=null) FuncLst.Add(N.ADF); } );
             bool SetF=true;
             int  loopC=0;
-            while( SetF || ++loopC<100 ){
+            int maxLoop = NodeLst.Count * 10;
+            while( SetF || ++loopC<maxLoop ){
                 SetF=false;
                 foreach( var F in FuncLst ){
                     int lvl= F.ADz._level;
                     F.ADPs.ForEach( q => { if(q._level<=lvl){q._level=lvl+1; SetF=true;} } );
                 }
             }
+            if( loopC>=maxLoop ) throw new ArithmeticException( "Expression is looping" );
                 
             int LMin = FuncLst.Min( f=> f.ADz._level );
             FuncLst.ForEach( f=> f.ADz._level-=LMin );
