@@ -2,7 +2,7 @@
 (1) Reverse mode automatic differentiation.  
 (2) Implemented compile function.  
     The calculation order of the function is determined from the input/output of the function.  
-(3) Efficiently calculate function values ​​and partial differential values  
+(3) Efficiently calculate function values ​​and partial differential values.  
 
 ## Example of use
 ```
