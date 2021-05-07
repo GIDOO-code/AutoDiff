@@ -15,6 +15,7 @@ namespace AutoDiff{
             {
                 VerificationMan Veri=new VerificationMan();
 
+                // Excception occurs in Sqrt (-3.0). Log (-3.0), ... This is the correct behavior.
                 Veri.Verification_Functions(5,2, new double[]{1,2,3,4}, new double[]{3,1,4,1} );
                 Veri.Verification_Functions(-3,-2, new double[]{-1,2,-3,4}, new double[]{1,2,3,4} );
                 Veri.Verification_Functions(3,10, new double[]{3,1,4,1}, new double[]{-1,2,-3,4} );
