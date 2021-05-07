@@ -1,0 +1,7 @@
+*.pdb
+*.dll
+AutoDiff/bin
+autodiff/obj
+
+AutoDiff_sample/bin
+AutoDiff_sample/obj
