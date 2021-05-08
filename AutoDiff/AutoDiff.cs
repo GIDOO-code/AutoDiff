@@ -112,7 +112,7 @@ namespace AutoDiff{
     public delegate double func_dd( double x1, double x2 );                 //Func(double,double,double)
     public delegate double func_dn( double[] xs );                          //Func(double[],double)
     public delegate double func_dndn( double[] xs, double[] ys );           //Func(double[],double[],double)
-    public delegate double func_dndnk( double[] xs, double[] ys, int k );   //Func(double[],double[],double)
+    public delegate double func_dndnk( double[] xs, double[] ys, int k );   //Func(double[],double[],int,double)
     #endregion delegate
 
     #region AD_function
