@@ -76,7 +76,7 @@ namespace AutoDiff {
 
       #region NewtonRaphson
         public void NewtonRaphson_1(){
-            WriteLine( "==================== NewtonRaphson ... y = 5.0-(x^2) ====================" );
+            WriteLine( "==================== NewtonRaphson_1 ... y = 5.0-(x^2) ====================" );
             AD_Man ADM = new AD_Man();          // AD manager (Declare first)
  
             AD x = new AD();            
@@ -90,7 +90,7 @@ namespace AutoDiff {
 
 
         public void NewtonRaphson_2(){
-            WriteLine( "==================== NewtonRaphson ... y = (x^2) - 4*x + 3 ====================" );
+            WriteLine( "==================== NewtonRaphson_2 ... y = (x^2) - 4*x + 3 ====================" );
             AD_Man ADM = new AD_Man();          // AD manager (Declare first)
 
             AD x = new AD();                

@@ -14,13 +14,19 @@ namespace AutoDiff{
 
     #region AD_Man
     public class AD_Man{
+        //AD_Man manages the structure of an expression from a bird's-eye view.
+        //FuncLst and FuncRevLst are arranged in the order of the input / output relationship of the function.
+        //Nodelst is an array of variables that determine the order of functions.
+
         private List<AD>            NodeLst = new List<AD>();
         private List<AD_function>   FuncLst;
         private List<AD_function>   FuncRevLst;
         private int _computeStep=0;
+
         public AD_Man( ){
             NodeLst = new List<AD>();
             AD.pNodeLst = NodeLst;
+            AD._ID0_ = 0;
             _computeStep=0;
         }
 
@@ -35,16 +41,24 @@ namespace AutoDiff{
             NodeLst.ForEach(N=> {if(N.ADF!=null) FuncLst.Add(N.ADF); } );
             bool SetF=true;
             int  loopC=0;
-            int maxLoop = NodeLst.Count * 10;
-            while( SetF || ++loopC<maxLoop ){
+            int maxLoop = NodeLst.Count * 100;
+            while( SetF && ++loopC<maxLoop ){
                 SetF=false;
                 foreach( var F in FuncLst ){
                     int lvl= F.ADz._level;
                     F.ADPs.ForEach( q => { if(q._level<=lvl){q._level=lvl+1; SetF=true;} } );
                 }
+#if false
+                foreach( var F in FuncLst ){
+                    string st = $"loop:{loopC}  F.ADz.opName:{F.ADz.opName}  level:{F.ADz._level}"+ "\r\n";
+                    F.ADPs.ForEach( q => st+= $"        {q.opName}  level:{q._level}"+ "\r\n" );
+                    WriteLine(st);
+                }
+                WriteLine("-----------------------------------------------");
+#endif
             }
-            if( loopC>=maxLoop ) throw new ArithmeticException( "Expression is looping" );
-                
+            if( loopC>=maxLoop ) throw new ArithmeticException( "Expression is looping." );
+            
             int LMin = FuncLst.Min( f=> f.ADz._level );
             FuncLst.ForEach( f=> f.ADz._level-=LMin );
             FuncLst.Sort( (f,g)=> -(f.ADz._level-g.ADz._level));
