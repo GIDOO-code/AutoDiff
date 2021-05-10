@@ -1,0 +1,179 @@
+==================== Verification ==================== p:5  q:2
+ op+    v:5.000000 -- vr:5.000000 ok     d:1.000000 -- dr:1.000000     ok
+ op-    v:-5.000000 -- vr:-5.000000 ok     d:-1.000000 -- dr:-1.000000     ok
+ op+op  v:7.000000 -- vr:7.000000 ok     d:1.000000 -- dr:1.000000     ok     d:1.000000 -- dr:1.000000     ok
+ op-op  v:3.000000 -- vr:3.000000 ok     d:1.000000 -- dr:1.000000     ok     d:-1.000000 -- dr:-1.000000     ok
+ op*op  v:10.000000 -- vr:10.000000 ok     d:2.000000 -- dr:2.000000     ok     d:5.000000 -- dr:5.000000     ok
+ op/op  v:2.500000 -- vr:2.500000 ok     d:0.500000 -- dr:0.500000     ok     d:-1.250000 -- dr:-1.250000     ok
+ Pow    v:25.000000 -- vr:25.000000 ok     d:10.000000 -- dr:10.000000     ok     d:40.235948 -- dr:40.235948     ok
+
+ Exp    v:148.413159 -- vr:148.413159 ok     d:148.413159 -- dr:148.413159     ok
+ Sqrt   v:2.236068 -- vr:2.236068 ok     d:0.223607 -- dr:0.223607     ok
+ Log    v:1.609438 -- vr:1.609438 ok     d:0.200000 -- dr:0.200000     ok
+ Log_a  v:2.321928 -- vr:2.321928 ok     d:0.288539 -- dr:0.288539     ok
+ Pow    v:25.000000 -- vr:25.000000 ok     d:10.000000 -- dr:10.000000     ok     d:40.235948 -- dr:40.235948     ok
+ Pow    v:25.000000 -- vr:25.000000 ok     d:10.000000 -- dr:10.000000     ok     d:40.235948 -- dr:40.235948     ok
+ Sin    v:0.587785 -- vr:0.587785 ok     d:0.809017 -- dr:0.809017     ok
+ Cos    v:0.809017 -- vr:0.809017 ok     d:-0.587785 -- dr:-0.587785     ok
+ Tan    v:0.726543 -- vr:0.726543 ok     d:1.527864 -- dr:1.527864     ok
+ Tanh   v:0.556893 -- vr:0.556893 ok     d:0.689870 -- dr:0.689870     ok
+ Abs    v:5.000000 -- vr:5.000000 ok     d:1.000000 -- dr:1.000000     ok
+ Max    v:5.000000 -- vr:5.000000 ok     d:1.000000 -- dr:1.000000     ok     d:0.000000 -- dr:0.000000     ok
+ Min    v:2.000000 -- vr:2.000000 ok     d:0.000000 -- dr:0.000000     ok     d:1.000000 -- dr:1.000000     ok
+ Sigmoid v:0.993307 -- vr:0.993307 ok     d:0.006648 -- dr:0.006648     ok
+ ReLU   v:5.000000 -- vr:5.000000 ok     d:1.000000 -- dr:1.000000     ok
+
+ Average v:2.500000 -- vr:2.500000 ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+ Sum    v:10.000000 -- vr:10.000000 ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+ InnerProd v:21.000000 -- vr:21.000000 ok
+     d:3.000000 -- dr:3.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:2.000000 -- dr:2.000000     ok
+     d:3.000000 -- dr:3.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+==================== Verification ==================== p:-3  q:-2
+ op+    v:-3.000000 -- vr:-3.000000 ok     d:1.000000 -- dr:1.000000     ok
+ op-    v:3.000000 -- vr:3.000000 ok     d:-1.000000 -- dr:-1.000000     ok
+ op+op  v:-5.000000 -- vr:-5.000000 ok     d:1.000000 -- dr:1.000000     ok     d:1.000000 -- dr:1.000000     ok
+ op-op  v:-1.000000 -- vr:-1.000000 ok     d:1.000000 -- dr:1.000000     ok     d:-1.000000 -- dr:-1.000000     ok
+ op*op  v:6.000000 -- vr:6.000000 ok     d:-2.000000 -- dr:-2.000000     ok     d:-3.000000 -- dr:-3.000000     ok
+ op/op  v:1.500000 -- vr:1.500000 ok     d:-0.500000 -- dr:-0.500000     ok     d:0.750000 -- dr:0.750000     ok
+
+   at AutoDiff.AD.<>c__DisplayClass33_0.<Pow>b__0(Double u, Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 463
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double x2, Double vr, Double dr1, Double dr2) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 134
+
+ Exp    v:0.049787 -- vr:0.049787 ok     d:0.049787 -- dr:0.049787     ok
+
+   at AutoDiff.AD.<>c__DisplayClass30_0.<Sqrt>b__0(Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 424
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double vr, Double dr) in E:\◆◆C#\■Automatic Differentiation\ ◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 120
+
+   at AutoDiff.AD.<>c__DisplayClass31_0.<Log>b__0(Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 437
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double vr, Double dr) in E:\◆◆C#\■Automatic Differentiation\ ◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 120
+
+   at AutoDiff.AD.<>c__DisplayClass32_0.<Log>b__0(Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 450
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double vr, Double dr) in E:\◆◆C#\■Automatic Differentiation\ ◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 120
+
+   at AutoDiff.AD.<>c__DisplayClass33_0.<Pow>b__0(Double u, Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 463
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double x2, Double vr, Double dr1, Double dr2) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 134
+
+   at AutoDiff.AD.<>c__DisplayClass33_0.<Pow>b__0(Double u, Double w) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\AutoDiff.cs:line 463
+   at AutoDiff.VerificationMan._Verify(AD y, Double x1, Double x2, Double vr, Double dr1, Double dr2) in E:\◆◆C#\■Automatic Differentiation\◆◆gAutoDiff\AutoDiff 20210510\AutoDiff\Verification.cs:line 134
+ Sin    v:-0.866025 -- vr:-0.866025 ok     d:0.500000 -- dr:0.500000     ok
+ Cos    v:0.500000 -- vr:0.500000 ok     d:0.866025 -- dr:0.866025     ok
+ Tan    v:-1.732051 -- vr:-1.732051 ok     d:4.000000 -- dr:4.000000     ok
+ Tanh   v:-0.780714 -- vr:-0.780714 ok     d:0.390485 -- dr:0.390485     ok
+ Abs    v:3.000000 -- vr:3.000000 ok     d:-1.000000 -- dr:-1.000000     ok
+ Max    v:-2.000000 -- vr:-2.000000 ok     d:0.000000 -- dr:0.000000     ok     d:1.000000 -- dr:1.000000     ok
+ Min    v:-3.000000 -- vr:-3.000000 ok     d:1.000000 -- dr:1.000000     ok     d:0.000000 -- dr:0.000000     ok
+ Sigmoid v:0.047426 -- vr:0.047426 ok     d:0.045177 -- dr:0.045177     ok
+ ReLU   v:0.000000 -- vr:0.000000 ok     d:0.000000 -- dr:0.000000     ok
+
+ Average v:0.500000 -- vr:0.500000 ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+ Sum    v:2.000000 -- vr:2.000000 ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+ InnerProd v:10.000000 -- vr:10.000000 ok
+     d:1.000000 -- dr:1.000000     ok
+     d:2.000000 -- dr:2.000000     ok
+     d:3.000000 -- dr:3.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+     d:-1.000000 -- dr:-1.000000     ok
+     d:2.000000 -- dr:2.000000     ok
+     d:-3.000000 -- dr:-3.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+==================== Verification ==================== p:3  q:10
+ op+    v:3.000000 -- vr:3.000000 ok     d:1.000000 -- dr:1.000000     ok
+ op-    v:-3.000000 -- vr:-3.000000 ok     d:-1.000000 -- dr:-1.000000     ok
+ op+op  v:13.000000 -- vr:13.000000 ok     d:1.000000 -- dr:1.000000     ok     d:1.000000 -- dr:1.000000     ok
+ op-op  v:-7.000000 -- vr:-7.000000 ok     d:1.000000 -- dr:1.000000     ok     d:-1.000000 -- dr:-1.000000     ok
+ op*op  v:30.000000 -- vr:30.000000 ok     d:10.000000 -- dr:10.000000     ok     d:3.000000 -- dr:3.000000     ok
+ op/op  v:0.300000 -- vr:0.300000 ok     d:0.100000 -- dr:0.100000     ok     d:-0.030000 -- dr:-0.030000     ok
+ Pow    v:59049.000000 -- vr:59049.000000 ok     d:196830.000000 -- dr:196830.000000     ok     d:64871.957034 -- dr:64871.957034     ok
+
+ Exp    v:20.085537 -- vr:20.085537 ok     d:20.085537 -- dr:20.085537     ok
+ Sqrt   v:1.732051 -- vr:1.732051 ok     d:0.288675 -- dr:0.288675     ok
+ Log    v:1.098612 -- vr:1.098612 ok     d:0.333333 -- dr:0.333333     ok
+ Log_a  v:1.584963 -- vr:1.584963 ok     d:0.480898 -- dr:0.480898     ok
+ Pow    v:59049.000000 -- vr:59049.000000 ok     d:196830.000000 -- dr:196830.000000     ok     d:64871.957034 -- dr:64871.957034     ok
+ Pow    v:59049.000000 -- vr:59049.000000 ok     d:196830.000000 -- dr:196830.000000     ok     d:64871.957034 -- dr:64871.957034     ok
+ Sin    v:0.866025 -- vr:0.866025 ok     d:0.500000 -- dr:0.500000     ok
+ Cos    v:0.500000 -- vr:0.500000 ok     d:-0.866025 -- dr:-0.866025     ok
+ Tan    v:1.732051 -- vr:1.732051 ok     d:4.000000 -- dr:4.000000     ok
+ Tanh   v:0.780714 -- vr:0.780714 ok     d:0.390485 -- dr:0.390485     ok
+ Abs    v:3.000000 -- vr:3.000000 ok     d:1.000000 -- dr:1.000000     ok
+ Max    v:10.000000 -- vr:10.000000 ok     d:0.000000 -- dr:0.000000     ok     d:1.000000 -- dr:1.000000     ok
+ Min    v:3.000000 -- vr:3.000000 ok     d:1.000000 -- dr:1.000000     ok     d:0.000000 -- dr:0.000000     ok
+ Sigmoid v:0.952574 -- vr:0.952574 ok     d:0.045177 -- dr:0.045177     ok
+ ReLU   v:3.000000 -- vr:3.000000 ok     d:1.000000 -- dr:1.000000     ok
+
+ Average v:2.250000 -- vr:2.250000 ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+     d:0.250000 -- dr:0.250000     ok
+ Sum    v:9.000000 -- vr:9.000000 ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+ InnerProd v:-9.000000 -- vr:-9.000000 ok
+     d:-1.000000 -- dr:-1.000000     ok
+     d:2.000000 -- dr:2.000000     ok
+     d:-3.000000 -- dr:-3.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+     d:3.000000 -- dr:3.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+     d:4.000000 -- dr:4.000000     ok
+     d:1.000000 -- dr:1.000000     ok
+==================== AD_Sample1  y = x1 * AD.Exp( -0.5 * ( (x1^2) + (x2^2) ) ) ====================
+ type-1  y.Val:0.238866  x1.Val:2.000000  x2.Val:0.500000  x1.Dif:-0.358299  x2.Dif:-0.119433
+ type-2  y.Val:0.238866  x1.Val:2.000000  x2.Val:0.500000  x1.Dif:-0.358299  x2.Dif:-0.119433
+
+ d:1  y.Val:0.535261  x1.Val:1.000000  x2.Val:0.500000  x1.Dif:0.000000  x2.Dif:-0.267631
+ d:2  y.Val:0.238866  x1.Val:2.000000  x2.Val:0.500000  x1.Dif:-0.358299  x2.Dif:-0.119433
+ d:3  y.Val:0.029411  x1.Val:3.000000  x2.Val:0.500000  x1.Dif:-0.078429  x2.Dif:-0.014705
+ d:4  y.Val:0.001184  x1.Val:4.000000  x2.Val:0.500000  x1.Dif:-0.004441  x2.Dif:-0.000592
+ d:5  y.Val:0.000016  x1.Val:5.000000  x2.Val:0.500000  x1.Dif:-0.000079  x2.Dif:-0.000008
+==================== NewtonRaphson_1 ... y = 5.0-(x^2) ====================
+   loop:0 Xsol:3.0000000000
+   loop:1 Xsol:2.3333333333
+   loop:2 Xsol:2.2380952381
+   loop:3 Xsol:2.2360688956
+   loop:4 Xsol:2.2360679775
+   loop:5 Xsol:2.2360679775
+   loop:6 Xsol:2.2360679775
+   solution:2.2360679775  ... Sqrt(5.0)
+==================== NewtonRaphson_2 ... y = (x^2) - 4*x + 3 ====================
+   loop:0 Xsol:0.7500000000
+   loop:1 Xsol:0.9750000000
+   loop:2 Xsol:0.9996951220
+   loop:3 Xsol:0.9999999535
+   loop:4 Xsol:1.0000000000
+   loop:5 Xsol:1.0000000000
+   loop:6 Xsol:1.0000000000
+   loop:0 Xsol:4.6000000000
+   loop:1 Xsol:3.4923076923
+   loop:2 Xsol:3.0812053925
+   loop:3 Xsol:3.0030495204
+   loop:4 Xsol:3.0000046357
+   loop:5 Xsol:3.0000000000
+   loop:6 Xsol:3.0000000000
+   loop:7 Xsol:3.0000000000
+   solution _1:1.0000000000  _2:3.0000000000

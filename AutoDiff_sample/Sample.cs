@@ -15,7 +15,7 @@ namespace AutoDiff {
 
         public SampleMan( ){ }
         public  void Sample1(){ 
-            WriteLine( "==================== AD_Sample1 ====================" );
+            WriteLine( "==================== AD_Sample1  y = x1 * AD.Exp( -0.5 * ( (x1^2) + (x2^2) ) ) ====================" );
             AD_Man ADM = new AD_Man();          // AutoDiff manager. Defined before starting AD
 
             AD x1=new AD( );
@@ -52,7 +52,7 @@ namespace AutoDiff {
                     foreach( var (P,k) in VDlst.Select((v,i)=>(v,i)))  st2+=$"  x{k+1}.Dif:{P.Item2:f6}";
                     WriteLine(st2);
             //-------------------------------------------
-
+            WriteLine();
 
 
 
@@ -98,7 +98,7 @@ namespace AutoDiff {
             y.pADM = ADM;                       // <- necessary!
 
             double x1 = _NewtonRaphson( y, x, 0, 20, 1.0e-20 );
-            double x2 = _NewtonRaphson( y, x, 7, 20, 1.0e-20 );
+            double x2 = _NewtonRaphson( y, x, 7, 20, 1.0e-20 );     //Solve by changing the initial value.
             WriteLine( $"   solution _1:{x1:f10}  _2:{x2:f10}");
         }
 

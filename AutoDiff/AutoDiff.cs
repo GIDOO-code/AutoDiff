@@ -33,42 +33,34 @@ namespace AutoDiff{
       #region Compile,Compute,Differetial
         public void AD_Compile( bool checkB=false ){ // <<..... Optional .....
             if(_computeStep>=2)  return;
-                    if(checkB)  NodeLst.ForEach(P=> WriteLine( $"nodeLst1 {P.ToStringSP()}") );
+                        if(checkB)  NodeLst.ForEach(P=> WriteLine( $"nodeLst1 {P.ToStringSP()}") );
 
             // Semiorder between variables based on reference relationship.
-            NodeLst.ForEach(p=>p._level=1);
             FuncLst = new List<AD_function>();
-            NodeLst.ForEach(N=> {if(N.ADF!=null) FuncLst.Add(N.ADF); } );
-            bool SetF=true;
-            int  loopC=0;
-            int maxLoop = NodeLst.Count * 100;
-            while( SetF && ++loopC<maxLoop ){
-                SetF=false;
+            NodeLst.ForEach(N=> {if(N.ADF!=null) FuncLst.Add(N.ADF);} );
+
+            NodeLst.ForEach(p=>p._level=1);
+            int  loopC=0, maxLoop=NodeLst.Count*10;
+            do{
+                bool SetF=false;
                 foreach( var F in FuncLst ){
-                    int lvl= F.ADz._level;
-                    F.ADPs.ForEach( q => { if(q._level<=lvl){q._level=lvl+1; SetF=true;} } );
+                    int lvlChild = F.ADPs.Max(q=>q._level);
+                    if( F.ADz._level<=lvlChild ){ F.ADz._level=lvlChild+1; SetF=true; };
                 }
-#if false
-                foreach( var F in FuncLst ){
-                    string st = $"loop:{loopC}  F.ADz.opName:{F.ADz.opName}  level:{F.ADz._level}"+ "\r\n";
-                    F.ADPs.ForEach( q => st+= $"        {q.opName}  level:{q._level}"+ "\r\n" );
-                    WriteLine(st);
-                }
-                WriteLine("-----------------------------------------------");
-#endif
-            }
+                if(!SetF) break;
+            }while( ++loopC<maxLoop );
             if( loopC>=maxLoop ) throw new ArithmeticException( "Expression is looping." );
             
             int LMin = FuncLst.Min( f=> f.ADz._level );
             FuncLst.ForEach( f=> f.ADz._level-=LMin );
-            FuncLst.Sort( (f,g)=> -(f.ADz._level-g.ADz._level));
+            FuncLst.Sort( (f,g)=> (f.ADz._level-g.ADz._level));
                 
             FuncRevLst = FuncLst.ConvertAll(p=>p);
             FuncRevLst.Reverse();
-                    if(checkB){
-                        WriteLine();
-                        NodeLst.ForEach(P=> WriteLine( $"nodeLst2 {P.ToStringSP()}") );
-                    }
+                        if(checkB){
+                            WriteLine();
+                            NodeLst.ForEach(P=> WriteLine( $"nodeLst2 {P.ToStringSP()}") );
+                        }
             _computeStep = 1;
             return;
         }
@@ -77,7 +69,7 @@ namespace AutoDiff{
             if(_computeStep==0)  AD_Compile();
             
             { //--- forward ---
-                if(printSw){ WriteLine(); WriteLine("\r*** Forward mode ****"); }
+                        if(printSw){ WriteLine(); WriteLine("\r*** Forward mode ****"); }
                 // Values ​​can be obtained by calculating in the order of expression definitions.
                 for( int k=0; k<Vars.Length; k++ )  Vars[k].Val = Points[k];    //Set value for variables
                 NodeLst.ForEach( P => P.Dif=0.0 );
@@ -85,7 +77,7 @@ namespace AutoDiff{
             }
 
             { //--- Reverse ---
-                if(printSw){ WriteLine(); WriteLine("\r*** Reverse mode ****"); }
+                        if(printSw){ WriteLine(); WriteLine("\r*** Reverse mode ****"); }
                 var F0 = FuncRevLst[0];
                 NodeLst.ForEach( P => P.Dif=0.0 );
                 F0.ADz.Dif= 1.0;
@@ -182,7 +174,6 @@ namespace AutoDiff{
 
 
 
-        // ----- Function, calculation, execution -----
         public void ComputeFunc( bool printSw=false ){
             if(AD_func1!=null){
                 AD ADP=ADPs[0];
@@ -306,7 +297,7 @@ namespace AutoDiff{
         public  AD_function  ADF;
         public  double       Val;                // Function value
         public  double       Dif;                // Partial differential value
-        public  AD_Man       pADM=null;
+        public  AD_Man       pADM;
         private AD[]         pVars=null;
 
         #region Constructor
@@ -325,8 +316,9 @@ namespace AutoDiff{
 
         public void Evaluate( AD[] Vars, double[] Points, bool printSw=false ){
             this.pVars = Vars;
-            if(ADF==null) throw new NullReferenceException( $"NullReferenceException: {opName}.ADM" );
-            else   pADM.AD_Compute( Vars, Points, printSw );
+            if(ADF==null)       throw new NullReferenceException( $"NullReferenceException: {opName}.ADM" );
+            else if(pADM==null) throw new NullReferenceException( $"NullReferenceException: undefined pADM" );
+            else  pADM.AD_Compute( Vars, Points, printSw );
         }
 
 
@@ -371,13 +363,13 @@ namespace AutoDiff{
             return z;
         }     
 
-        static public AD operator +( AD x ){     // + Conversion operator
+        static public AD operator +( AD x ){            // + Conversion operator
             var z = new AD("op+");
             z.ADF = new AD_function( (w)=>w, z, x, (w)=>1 );
             return z;
         }
         
-        static public AD operator -( AD x ){    // - Conversion operator         
+        static public AD operator -( AD x ){            // - Conversion operator         
             var z = new AD("op-");
             z.ADF = new AD_function( (w)=>-w, z, x, (w)=>-1 );
             return z;
@@ -407,10 +399,10 @@ namespace AutoDiff{
         }
 
         // In AD, ^ is used for exponentiation. Enclose the target term in ().
-        static public AD operator ^( AD x, AD y ){      // ^ operator overload    //------------???
+        static public AD operator ^( AD x, AD y ){      // ^ operator overload
             return Pow(x,y);
         }
-        static public AD operator ^( AD x, double p ){      // ^ operator overload    //------------???
+        static public AD operator ^( AD x, double p ){  // ^ operator overload
             AD x2 = new AD(p);
             return Pow(x,x2);
         }
@@ -418,12 +410,12 @@ namespace AutoDiff{
         #endregion Binary operator
 
       #region Math functions       
-        static public AD Exp( AD x ){       // Exp
+        static public AD Exp( AD x ){                   // Exp
             var z = new AD("Exp");
             z.ADF = new AD_function( (w)=>Math.Exp(w), z, x, (w)=>Math.Exp(w) );
             return z;
         }        
-        static public AD Sqrt( AD x ){      // Sqrt
+        static public AD Sqrt( AD x ){                  // Sqrt
             var z = new AD("Sqrt");
 #if aDEBUG
             func_d _fSqrt = (w) => {
@@ -436,7 +428,7 @@ namespace AutoDiff{
 #endif
             return z;
         }      
-        static public AD Log( AD x ){       // Log           
+        static public AD Log( AD x ){                   // Log           
             var z = new AD("Log");
 #if aDEBUG
             func_d _fLog = (w) => {
@@ -449,7 +441,7 @@ namespace AutoDiff{
 #endif
             return z;
         }      
-        static public AD Log( AD x, double a ){// Log(x,a)
+        static public AD Log( AD x, double a ){         // Log(x,a)
             var z = new AD("Log_a");
 #if aDEBUG
             func_d _fLoga = (w) => {
@@ -462,7 +454,7 @@ namespace AutoDiff{
 #endif
             return z;
         }
-        static public AD Pow( AD x, AD y ){ //  x^y         
+        static public AD Pow( AD x, AD y ){             //  x^y         
             var z = new AD("Pow");
 #if aDEBUG
             func_dd _fPow_dw = (u,w) => {
@@ -475,63 +467,63 @@ namespace AutoDiff{
 #endif
             return z;
         }
-        static public AD Sin( AD x ){       // Sin
+        static public AD Sin( AD x ){                   // Sin
             var z = new AD("Sin");
             z.ADF = new AD_function( (w)=>Math.Sin(w), z, x, (w)=>Math.Cos(w) );
             return z;
         }
-        static public AD Cos( AD x ){       // Cos
+        static public AD Cos( AD x ){                   // Cos
             var z = new AD("Cos");
             z.ADF = new AD_function( (w)=>Math.Cos(w), z, x, (w)=>-Math.Sin(w) );
             return z;
         }
-        static public AD Tan( AD x ){       // Tan
+        static public AD Tan( AD x ){                   // Tan
             var z = new AD("Tan");           
             z.ADF = new AD_function( (w)=>Math.Tan(w), z, x, (w)=> {
                 double cos = Math.Cos(w);
                 return 1/(cos*cos); } );
             return z;
         }        
-        static public AD Tanh( AD x ){      // Tanh
+        static public AD Tanh( AD x ){                  // Tanh
             var z = new AD("Tanh");
             func_d  _tanh = (w)=> { double wt=Math.Tanh(w); return 1.0- wt*wt; };
             z.ADF = new AD_function( (w)=>Math.Tanh(w), z, x, _tanh );
             return z;
         }      
-        static public AD Abs( AD x ){       // Abs
+        static public AD Abs( AD x ){                   // Abs
             var z = new AD("Abs");
             z.ADF = new AD_function( (w)=>Math.Abs(w), z, x, (w)=>(w<0? -1: 1) );
             return z;
         }     
-        static public AD Max( AD x, AD y ){ // Max
+        static public AD Max( AD x, AD y ){             // Max
             AD z = new AD("Max");
             z.ADF = new AD_function( (u,w)=>Math.Max(u,w), z, x, y, (u,w)=>(u>w?1:0), (u,w)=> (u>w?0:1) );
             return z;
         }        
-        static public AD Min( AD x, AD y ){ // Min関数
+        static public AD Min( AD x, AD y ){             // Min関数
             AD z = new AD("Min");
             z.ADF = new AD_function( (u,w)=>Math.Min(u,w), z, x, y, (u,w)=>(u<w?1:0), (u,w)=>(u<w?0:1) );
             return z;
         }     
-        static public AD Sigmoid( AD x ){   // Sigmoid    
+        static public AD Sigmoid( AD x ){               // Sigmoid    
             var z = new AD("Sigmoid");
             func_d  _sig = (w)=> { double zz=1/(1+Math.Exp(-w)); return zz*(1.0-zz); };
             z.ADF = new AD_function( (w)=>1/(1+Math.Exp(-w)), z, x, _sig );
             return z;
         }
-        static public AD ReLU( AD x ){      // ReLU            
+        static public AD ReLU( AD x ){                  // ReLU            
             var z = new AD("ReLU");
             z.ADF = new AD_function( (w)=>Math.Max(0,w), z, x, (w)=>((w<=0)? 0:1) );
             return z;
         }
-        static public AD Sum( AD[] xs ){    // Sum           
+        static public AD Sum( AD[] xs ){                // Sum           
             var z = new AD("Sum");
             int N=xs.Length;
             List<func_dn> _dfN = Enumerable.Repeat<func_dn>((ws)=>1,N).ToList();
             z.ADF = new AD_function( (ws)=>ws.ToList().Sum(), z, xs, _dfN );
             return z;
         }    
-        static public AD Average( AD[] xs ){ // Average          
+        static public AD Average( AD[] xs ){            // Average          
             var z = new AD("Average");
             int N=xs.Length;
             double _dn = 1.0/N;
@@ -540,7 +532,7 @@ namespace AutoDiff{
             return z;
         }
 
-        static public AD InnerProd( AD[] xs, AD[] ys ){// InnerProd
+        static public AD InnerProd( AD[] xs, AD[] ys ){ // InnerProd
             var z = new AD("InnerProd");
             if(xs.Length!=ys.Length) throw new ArgumentException( $"ArgumentException: {z.opName}.ADM" );
             var N = Math.Min(xs.Length, ys.Length);
